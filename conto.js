@@ -8,7 +8,42 @@ function myFunction(){
     var func = 'loginAps';
     var qrCode ='';
     var code ='AKfycbzfPw0j2qHHGFVr02De7YwMP3ltZ2IkWcAU5MJOkxScXdEGKpM';
-    var tambah = 'exec?'+'func='+func+'&userId='+nameValue+'&qrCode=&pass='+password;
+    var tambah = 'exec?'+'func='+func+'&userId='+user+'&qrCode=&pass='+pass;
+    $.ajax({
+        method:'GET',url:'https://script.google.com/macros/s/'+code+'/'+tambah,
+        success:function(response){
+        myArray =[];
+        myArray = response.data;
+
+        var ket = myArray[0].ket 
+        var nilai = myArray[0].userId
+        var status = myArray[0].status
+        var divisi = myArray[0].divisi
+
+        alert(ket);
+        },
+        error:function(jqXHR, exception){
+                var msg = '';
+                if (jqXHR.status === 0) {
+                    msg = 'Not connect.\n Verify Network.';
+                } else if (jqXHR.status == 404) {
+                    msg = 'Requested page not found. [404]';
+                } else if (jqXHR.status == 500) {
+                    msg = 'Internal Server Error [500].';
+                } else if (exception === 'parsererror') {
+                    msg = 'Requested JSON parse failed.';
+                } else if (exception === 'timeout') {
+                    msg = 'Time out error.';
+                } else if (exception === 'abort') {
+                    msg = 'Ajax request aborted.';
+                } else {
+                    msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                }
+                document.getElementById("loadingLogs").style.visibility = 'hidden';
+                alert(msg);
+            },
+    });
+}
     alert(tambah);
     
 }
