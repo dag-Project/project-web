@@ -4166,6 +4166,23 @@ function btlext(){
     document.getElementById('poptamOKP').style.display ="none";
 }
 
+function dListPermintBulan(){
+    var n =document.getElementById('tListBarangPermin').value;
+    var m =document.getElementById('dListBulanPermin').value;
+    if(n == '---'){
+        alert('Pilih Tipe Barang');
+    }
+    else{
+        if(m == '00'){
+            document.getElementById('dListBulanPermin').value = idBulan;
+            gBulan();
+        }
+        else{
+            gBulan();
+        }
+    }
+}
+
 
 /*
 table id =lotPrmint
